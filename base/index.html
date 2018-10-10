@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Diplomados</title>
+  <script src="https://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+
+  
+  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css'>
+<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+  <div class="container">
+
+    <form class="well form-horizontal" action="process-form-data.php" method="post"  id="contact_form">
+<fieldset>
+
+<!-- Form Name -->
+
+
+
+
+<!-- Text input Nombre -->
+<div class="form-group">
+  <label class="col-md-4 control-label">Nombres</label>  
+  <div class="col-md-4 inputGroupContainer">
+  <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <input  name="name" placeholder="Nombres" class="form-control"  type="text">
+    </div>
+  </div>
+</div>
+
+<!-- Text input Apellido-->
+<div class="form-group">
+  <label class="col-md-4 control-label" >Apellidos</label> 
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+  <input name="last_name" placeholder="Apellidos" class="form-control"  type="text">
+    </div>
+  </div>
+</div>
+
+<!-- Select  Tipo documento -->
+<div class="form-group"> 
+  <label class="col-md-4 control-label">Tipo de documento</label>
+    <div class="col-md-4 selectContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+    <select name="tdoc" class="form-control selectpicker" >
+      <option value=" " >Elija una opcion</option>
+      <option value="CC">CC (Cédula de ciudadanía)</option>
+      <option value="CE">CE (Cédula de extrangería)</option>
+      <option value="TI">TI (Tarjeta de identidad)</option>
+    </select>
+  </div>
+</div>
+</div>
+
+<!-- Text input Documento de identidad-->    
+<div class="form-group">
+  <label class="col-md-4 control-label">Numero documento</label>  
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-file"></i></span>
+  <input name="documento" placeholder="Documento de Identidad" class="form-control" type="number">
+    </div>
+  </div>
+</div>
+
+<!-- Number Telefono-->     
+<div class="form-group">
+  <label class="col-md-4 control-label">Teléfono de contacto</label>  
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+  <input name="phone" placeholder="310 555 5555" class="form-control" type="number">
+    </div>
+  </div>
+</div>
+
+<!-- Email  email-->
+<div class="form-group">
+  <label class="col-md-4 control-label">Correo electrónico</label>  
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+  <input name="email" placeholder="ejemplo@dominio.com" class="form-control"  type="text">
+    </div>
+  </div>
+</div>
+
+
+<!-- Select Vinculacion UD --> 
+<div class="form-group"> 
+  <label class="col-md-4 control-label">Vinculación</label>
+    <div class="col-md-4 selectContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+    <select name="vinculacion" class="form-control selectpicker" >
+      <option value=" " >Elija una opcion</option>
+      <option>Docente de Carrera</option>
+      <option >Docente de vinculacion especial</option>
+      <option >Estudiante de pregrado</option>
+      <option >Estudiante de posgrado</option>
+      <option >Egresado</option>
+      <option >Contratista</option>
+      <option >Empleado de planta</option>
+    </select>
+  </div>
+</div>
+</div>
+
+<!-- Number Codigo -->
+<div class="form-group">
+  <label class="col-md-4 control-label">Código o número de contrato </label>  
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+  <input name="codigo" placeholder="55555" class="form-control" type="number">
+    </div>
+  </div>
+</div>
+
+<!-- Text Facultad a la que pertenece -->
+<div class="form-group">
+  <label class="col-md-4 control-label">Facultad o dependencia</label>  
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+  <input name="fac_dep" placeholder="..." class="form-control"  type="text">
+    </div>
+  </div>
+</div>
+
+<!-- Text Proyecto curricular -->
+<div class="form-group">
+  <label class="col-md-4 control-label">Proyecto curricular</label>  
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+  <input name="pcurricular" placeholder="Proyecto curricular" class="form-control"  type="text">
+    </div>
+  </div>
+</div>
+<!-- Select cursos --> 
+<div class="form-group"> 
+  <label class="col-md-4 control-label">Seleccione el curso al que quiere inscribirse inicialmente</label>
+    <div class="col-md-4 selectContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+    <select name="cursos" class="form-control selectpicker" >
+      <option value=" " >Elija una opcion</option>
+      <option>El papel de Moodle y de las herramientas de autor.</option>
+      <option >Integración de TIC a los procesos de aprendizaje</option>
+      <option >Técnicas e instrumentos de evaluación apoyadas por TIC</option>
+    </select>
+  </div>
+</div>
+</div>
+<!-- Success message -->
+<div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label"></label>
+  <div class="col-md-4">
+    <button type="submit" class="btn btn-warning" name="s1" id="s1" value="guardar">Enviar <span class="glyphicon glyphicon-send"></span></button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+</div>
+    </div><!-- /.container -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
+
+    <script src="js/index.js"></script>
+
+</body>
+</html>
