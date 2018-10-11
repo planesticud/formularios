@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.css"/>
+ <script type="text/javascript" src="https://cdn.datatables.net/r/dt/dt-1.10.9/datatables.min.js"></script>
+ <title>Formularios </title>
+</head>
+<body>
+  
+ <div class="container" style="padding:50px 250px;">
+     <div class="alert alert-success">
+         <h1 >Administración de formularios</h1>
+         </div>
+         <div class="alert alert-info">
+   <table id="photos" class="table table-hover" cellspacing="0" width="100%">
+       <thead>
+           <tr>
+               <th>Ruta</th>
+               <th>Fecha de creacion</th>
+               <th>Estado</th>
+               <th>Acciones</th>
+               
+              
+           </tr>
+       </thead>
+       
+   </table>
+ </div>
+ </div>
+</body>
+</html>
+<script type="text/javascript">
+ $(document).ready(function(){
+   var arrayReturn = [];
+           $.ajax({
+               url: "/formularios/formularios.csv",
+               async: false,
+               dataType: 'text',
+               success: function (data) {
+                 var filas = data.split("\n");
+                 for(i=0;i<filas.length;i++){
+                   var datos = filas[i].split(",");
+                   var direccion = '<a  href=\"\\formularios/'+datos[0]+'"\ target="_blank" >'+datos[0]+'</a>';
+                   var accion = '<a class=\"btn btn-warning\"  onclick="cambiar_estado(\''+datos[0]+'\')">Activar/desactivar</a>';
+                  datos[2]=consultar_estado(datos[0]);
+                   console.log(datos)
+                   arrayReturn.push([direccion,datos[1],datos[2],accion]);
+                 }
+                 inittable(arrayReturn);
+               }
+               
+           });
+         
+   function inittable(data) {	
+   console.log(data)
+       $('#photos').DataTable( {
+           "aaData": data,
+           "dataSrc": function ( json ) {
+           
+             for ( var i=0, ien=json.data.length ; i<ien ; i++ ) {
+               json.data[i][0] = '<a href="/message/'+json.data[i][0]+'>View message</a>';
+             }
+       
+             return json.data;
+           }
+       } );
+   }
+   
+ });
+ function cambiar_estado(ruta){
+     var res = "";
+     $.ajax({
+               url: "/formularios/desactivar.php?nombre="+ruta,
+               async: false,
+               dataType: 'text',
+               success: function (data) {
+                
+                 res=data;
+               }
+               
+           });
+           console.log("respuesta: "+res)
+           location.reload();
+   }
+   function consultar_estado(ruta){
+     var res = "";
+     $.ajax({
+               url: "/formularios/estado.php?nombre="+ruta,
+               async: false,
+               dataType: 'text',
+               success: function (data) {
+                
+                 res=data;
+               }
+               
+           });
+           return res;
+           console.log(res)
+   }
+</script>

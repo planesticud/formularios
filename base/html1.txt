@@ -18,7 +18,7 @@
 </head>
 
 <body>
-  <div class="container">
+  <div class="container" style="padding-top: 50px; " >
 
     <form class="well form-horizontal" action="process-form-data.php" method="post"  id="contact_form">
 <fieldset>

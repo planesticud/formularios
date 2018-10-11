@@ -1,199 +1,122 @@
 <!DOCTYPE html>
-<html >
+<html>
+
 <head>
   <meta charset="UTF-8">
   <title>Formularios</title>
-  <script src="https://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
+
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
 
-  
-  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
-<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css'>
-<link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css'>
 
-      <link rel="stylesheet" href="css/style.css">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css'>
 
-  
+  <link rel="stylesheet" href="css/style.css">
+
+
 </head>
 
-<body>
-  <div class="container">
+<body >
+  <div id="login">
+    <h3  class="text-center text-white pt-5">Generador de formularios</h3>
+    
+    <div class="container">
+      <div id="login-row" class="row justify-content-center align-items-center">
+        <div id="login-column" class="col-md-6">
+          <div id="login-box" class="col-md-12">
+            <div id="login-form" class="form">
+              <h3 class="text-center text-info">Nuevo formulario</h3>
+              <div id="fallo" class="alert alert-danger" style="display:none;" role="alert">
+               
+            </div>
+            <div id="bien" class="alert alert-success" style="display:none;"role="alert">
+              
+              
+            </div>
+            <a id="url_datos"  href="#" style="display:none;" >Ver datos</a>
+            <a id="url" href="#" style="display:none;">Ver fomulario</a>
+              <!-- Text Titulo -->
+              <div class="form-group">
+                <label class="text-info">Nombre del formulario</label>
+                <input name="Titulo" placeholder="Nombre del formulario" class="form-control" type="text">
+              </div>
+              <!-- Text Ruta -->
+              <div class="form-group">
+                <label class="text-info">Ruta del formulario(sin espacios)</label>
+                <input name="Ruta" placeholder="Ruta del formulario" class="form-control" type="text">
+              </div>
+              <!-- Text input Nombre -->
+              <div class="form-group">
+                <label class="text-info">Texto de la pregunta</label>
+                <input name="Nombre" placeholder="Texto de la pregunta" class="form-control" type="text">
+              </div>
+              <!-- Text input Nombre Corto -->
+              <div class="form-group">
+                <label class="text-info">Nombre corto de la pregunta (sin espacios)</label>
+                <input name="Nombre_corto" placeholder="Nombre corto de la pregunta (sin espacios)" class="form-control"
+                  type="text">
+              </div>
+              <!-- Select  Tipo de pregunta -->
+              <div class="form-group">
+                <label class="text-info">Tipo de pregunta</label>
+                <select name="Tipo" class="form-control selectpicker">
+                  <option value=" ">Elija una opcion</option>
+                  <option value="input">Pregunta abierta</option>
+                  <option value="select">Seleccion multiple</option>
+                </select>
+              </div>
 
- 
-<fieldset>
+             
 
-<!-- Form Name -->
-<div class="well form-horizontal" >
-
-<center><h1>Super Generador automatico de formularios</h1></center>
-<p></p>
-
-<!-- Text input Nombre formulario -->
-<div class="form-group">
-  <label class="col-md-4 control-label">Nombre del formulario</label>  
-  <div class="col-md-4 inputGroupContainer">
-  <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input  name="Titulo" placeholder="Nombre del formulario" class="form-control"  type="text">
+              
+              <!-- Select Valores de la pregunta -->
+              <div id="select_valores" style="display:none;" class="form-group">
+                <label class="text-info" >Valores de la pregunta(separados por coma)</label>
+                <input name="Valores" placeholder="Valores de la pregunta(separados por coma)" class="form-control" type="text">
+              </div>
+               <!-- Select  Tipo de dato -->
+               <div  id="select_tipodato" class="form-group" style="display:none;">
+                <label class="text-info">Tipo de dato</label>
+                <select name="Tipo_dato" class="form-control selectpicker">
+                  <option value="">Elija una opcion</option>
+                  <option value="text">Texto</option>
+                  <option value="number">Número</option>
+                  <option value="email">Correo electronico</option>
+                </select>
+              </div>
+              <!-- Text input Mensaje de validacion -->
+              <div  class="form-group">
+                  <label class="text-info">Mensaje de validacion de la pregunta</label>
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                  <input name="Mensaje_validacion" placeholder="Mensaje de validacion de la pregunta" class="form-control"
+                    type="text">
+                </div>
+              <!-- Boton -->
+              <div class="form-group">
+                <p name="Num_preguntas"></p>
+                <button id="generar"onclick="leer()" class="btn btn-success" disabled>Generar </button>
+                <button onclick="add_pregunta()" class="btn btn-success">agregar pregunta </button>
+               
+              </div>
+             
+          </div>
+        </div>
+      </div>
+    </div>
+    
     </div>
   </div>
-</div>
-<!-- Text input Nombre -->
-<div class="form-group">
-  <label class="col-md-4 control-label">Texto de la pregunta</label>  
-  <div class="col-md-4 inputGroupContainer">
-  <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input  name="Nombre" placeholder="Texto de la pregunta" class="form-control"  type="text">
-    </div>
-  </div>
-</div>
-<!-- Text input Nombre Corto -->
-<div class="form-group">
-  <label class="col-md-4 control-label">Nombre corto de la pregunta (sin espacios)</label>  
-  <div class="col-md-4 inputGroupContainer">
-  <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input  name="Nombre_corto" placeholder="Nombre corto de la pregunta (sin espacios)" class="form-control"  type="text">
-    </div>
-  </div>
-</div>
-<!-- Select  Tipo de pregunta -->
-<div class="form-group"> 
-  <label class="col-md-4 control-label">Tipo de pregunta</label>
-    <div class="col-md-4 selectContainer">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-    <select name="Tipo" class="form-control selectpicker" >
-      <option value=" " >Elija una opcion</option>
-      <option value="input">Pregunta abierta</option>
-      <option value="select">Seleccion multiple</option>
-     
-    </select>
-  </div>
-</div>
-</div>
-
-<!-- Select  Tipo de dato -->
-<div class="form-group"> 
-  <label class="col-md-4 control-label">Tipo de dato</label>
-    <div class="col-md-4 selectContainer">
-    <div class="input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-    <select name="Tipo_dato" class="form-control selectpicker" >
-      <option value=" " >Elija una opcion</option>
-      <option value="text">Texto</option>
-      <option value="number">Número</option>
-      <option value="email">Correo electronico</option>
-    </select>
-  </div>
-</div>
-</div>
-
-<!-- Text input Mensaje de validacion -->
-<div class="form-group">
-  <label class="col-md-4 control-label">Mensaje de validacion de la pregunta</label>  
-  <div class="col-md-4 inputGroupContainer">
-  <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input  name="Mensaje_validacion" placeholder="Mensaje de validacion de la pregunta" class="form-control"  type="text">
-    </div>
-  </div>
-</div>
-<!-- Text input Mensaje de validacion -->
-<div class="form-group">
-  <label class="col-md-4 control-label">Valores de la pregunta(separados por coma)</label>  
-  <div class="col-md-4 inputGroupContainer">
-  <div class="input-group">
-  <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input  name="Valores" placeholder="Valores de la pregunta(separados por coma)" class="form-control"  type="text">
-    </div>
-  </div>
-</div>
-<!-- Success message -->
-<div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Thanks for contacting us, we will get back to you shortly.</div>
-
-<!-- Button -->
-<div class="form-group">
-  <label class="col-md-4 control-label"></label>
-  <div class="col-md-4">
-    <button  onclick="leer()" class="btn btn-success" >Generar </button>
-    <button  onclick="add_pregunta()" class="btn btn-success" >agregar pregunta </button>
-  </div>
-</div>
-</div>
-</fieldset>
-
-<pre id="output"></pre>
-</div>
-    </div><!-- /.container -->
-    <script>
-      var qu = [];
-function leer(){
-  var titulo = document.getElementsByName("Titulo")[0].value;
-  document.getElementsByName("Titulo")[0].value="";
-
-  var obj = '{'
-       +'"Titulo" :"'+titulo+'",'
-       +'"Preguntas" :[' + qu + ']'
-       +'}';
-       a= JSON.parse(obj);
-       console.log(a)
-
-$.ajax({
-    data: 'data=' + obj,
-    url: 'newfolder.php',
-    method: 'POST', // or GET
-    success: function(msg) {
-        alert("el formulario fue creado en la url: /"+titulo);
-    }
-});
-}
-function add_pregunta(){
-  var Nombre = document.getElementsByName("Nombre")[0].value;
-  document.getElementsByName("Nombre")[0].value="";
-
-  var Nombre_corto = document.getElementsByName("Nombre_corto")[0].value;
-  document.getElementsByName("Nombre_corto")[0].value="";
   
-  var Tipo = document.getElementsByName("Tipo")[0].value;
-  document.getElementsByName("Tipo")[0].value="";
-  
-  var Tipo_dato = document.getElementsByName("Tipo_dato")[0].value;
-  document.getElementsByName("Tipo_dato")[0].value="";
-  
-  var Mensaje_validacion = document.getElementsByName("Mensaje_validacion")[0].value;
-  document.getElementsByName("Mensaje_validacion")[0].value="";
-  
-  var Valores = document.getElementsByName("Valores")[0].value;
-  document.getElementsByName("Valores")[0].value="";
-  var val = Valores.split(",");
-  for (i=0;i<val.length;i++){
-    val[i] = '"'+val[i] +'"'
-  }
-  console.log(val[0])
-
-  var obj = '{'
-       +'"Nombre" :"'+Nombre+'",'
-       +'"Nombre_corto" :"'+Nombre_corto+'",'
-       +'"Tipo" :"'+Tipo+'",'
-       +'"Tipo_dato" :"'+Tipo_dato+'",'
-       +'"Mensaje_validacion" :"'+Mensaje_validacion+'",'
-       +'"Valores" :['+val + ']'
-       +'}';
-       qu.push(obj);
-       console.log(qu)
-}
-
-
-
-      </script>
+  <script src="js/genera_form.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
 
-    <script src="js/index.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
+
+  <script src="js/index.js"></script>
 
 </body>
+
 </html>

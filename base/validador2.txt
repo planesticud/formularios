@@ -1,3 +1,4 @@
+       terminos: { validators: { stringLength: { min: 2, message: 'No valido' }, notEmpty: {message: 'debe aceptar terminos'}}}
        }
         })
         .on('success.form.bv', function(e) {

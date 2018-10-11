@@ -3,8 +3,9 @@
 $data = $_POST["data"];
 $json_obj = json_decode($data,true);
 $nombre = $json_obj['Titulo'];
-$nameform  =  $json_obj['Titulo'];
+$nameform  =  $json_obj['Ruta'];
 $preguntas = $json_obj['Preguntas'];
+$fondo = $json_obj['Fondo'];
 
 
 
@@ -16,11 +17,18 @@ if (!file_exists($nameform)) {
     mkdir($nameform . '/css', 0777, true);
     // crea la carpeta de js
     mkdir($nameform . '/js', 0777, true);
+    // crea la carpeta de img
+    mkdir($nameform . '/img', 0777, true);
     //copia los archivos base
     // css
     copy('base/css/custom.css', $nameform . '/css/custom.css');
     copy('base/css/dataTables.bootstrap.css', $nameform . '/css/dataTables.bootstrap.css');
     copy('base/css/style.css', $nameform . '/css/style.css');
+    copy('base/img/fondo1.jpg', $nameform . '/img/fondo1.jpg');
+    $fp = fopen($nameform . '/css/style.css' , "a"); 
+    $savestring = 'body { background-image: url(../img/'. $fondo . ');  }';
+    fwrite($fp, $savestring);  
+    fclose($fp); 
     //js
     copy('base/js/csv_to_html_table.js', $nameform . '/js/csv_to_html_table.js');
     copy('base/js/dataTables.bootstrap.js', $nameform . '/js/dataTables.bootstrap.js');
@@ -66,7 +74,7 @@ if (!file_exists($nameform)) {
         $input = '<div class="form-group">' .
         '<label class="col-md-4 control-label">'. $pregunta['Nombre'] . '</label>' .
         '<div class="col-md-4 inputGroupContainer">' .        '<div class="input-group">' .        
-        '<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>' .        
+        '<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>' .        
         '<input  name="' . $pregunta['Nombre_corto'] . '" placeholder="' . $pregunta['Nombre'] . '" class="form-control"  type="' . $pregunta['Tipo_dato'] . '">' .       
         '</div>' .        
         '</div>' .        
@@ -125,8 +133,13 @@ if (!file_exists($nameform)) {
   fwrite($fjs, $jsfile);
   fclose($fjs);
 
-
-
+  $fecha_creado = date('Y-m-d'); 
+  $estado = "activo"  ;
+  $fp = fopen("formularios.csv", "a"); 
+  $savestring =  "\n" . $nameform . "," . $fecha_creado . "," . $estado ;  
+  fwrite($fp, $savestring);  
+  fclose($fp); 
+   
 
 
 }else{
