@@ -93,7 +93,7 @@ $('select').on('change', function() {
     document.getElementById("select_valores").style.display = "none";
     document.getElementById("select_tipodato").style.display = "block";
   }
-  if(valor=="select"){
+  if(valor=="select"|| valor=="radio"){
     document.getElementById("select_valores").style.display = "block";
     document.getElementById("select_tipodato").style.display = "none";
    }

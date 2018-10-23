@@ -68,7 +68,24 @@ if (!file_exists($nameform)) {
         $select = $selectA . $selectB . $selectC;
         $pre = $pre . $select;
     }
+    if($pregunta['Tipo']=='radio'){
+        $selectA = '<div class="form-group">' .
+        '<label class="col-md-4 control-label">' . $pregunta['Nombre'] . '</label>' .
+        '<div class="col-md-4">' .
+        '<div >' .
 
+        $selectB = '';
+        $valores =  $pregunta['Valores'];
+        foreach ($valores as $valor) {
+            $selectBB = '<label style="display: table-row-group; font-weight: 500;">' . $valor . '<input name="'.$pregunta['Nombre_corto'].'"  type="radio"></label>';
+            $selectB  = $selectB . $selectBB; 
+        }
+        $selectC = '</div>' .
+                '</div>' .
+                '</div>';
+        $select = $selectA . $selectB . $selectC;
+        $pre = $pre . $select;
+    }
     if($pregunta['Tipo']=='input'){
 
         $input = '<div class="form-group">' .
